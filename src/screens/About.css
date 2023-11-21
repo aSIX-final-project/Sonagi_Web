@@ -1,0 +1,16 @@
+.hr-long {
+    /* 원하는 길이로 조절하십시오. */
+    margin-left: 0;
+    /* 왼쪽 정렬 */
+    height: 0.2rem;
+    max-width: 26.779rem;
+    background-color: #FFFFFF;
+    opacity: 1;
+    border-color: #FFFFFF;
+}
+
+.svg-icon {
+    margin-right: 30px;
+    /* 원하는 간격으로 조절 */
+    margin-bottom: 10px;
+}
