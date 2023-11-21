@@ -5,17 +5,22 @@ import ListMember from './screens/ListMember';
 import Masthead from './screens/Masthead';
 import Navbar from './screens/Navbar';
 import ThanksTo from './screens/ThanksTo';
+import BoardNotice from './screens/BoardNotice';
 
 function App() {
 
   return (
-    <div>
+    <div style={{overflow: 'hidden'}}>
       <Navbar />
       <Masthead />
-      <About />
-      <HowTo />
+      <div style={{ display: 'flex', flexDirection: 'row', flex:1 }}>
+        <About />
+        <HowTo />
+      </div>
+      <BoardNotice/>
       <ThanksTo />
       <ListMember />
+
     </div>
 
   );

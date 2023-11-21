@@ -1,0 +1,19 @@
+/* 스크롤바 전체의 너비 */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* 스크롤바의 배경 */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* 스크롤바의 핸들(움직이는 부분) */
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+/* 스크롤바 핸들을 호버했을 때 */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}

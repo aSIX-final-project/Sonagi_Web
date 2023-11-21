@@ -20,8 +20,10 @@ function Map() {
 
     useEffect(() => {
         const fetchData = async () => {
-            const res = await axios.get('http://172.16.100.55:8888/boot/member/findAll');
+            const res = await axios.get('http://port-0-sonagi-app-project-1drvf2lloka4swg.sel5.cloudtype.app/boot/member/findAll');
             console.log(res.data);
+            console.log("ㅎㅇㅎㅇ");
+            console.log(res.data.list);
             const fetchPromises = res.data.list.map(async item => {
                 const response = await fetch(`https://dapi.kakao.com/v2/local/search/address.json?query=${item.address}`, {
                     headers: {

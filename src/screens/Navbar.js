@@ -13,8 +13,8 @@ const Navbar = () => {
                 <div className="collapse navbar-collapse" id="navbarResponsive">
                     <ul className="navbar-nav ms-auto my-2 my-lg-0">
                         <li className="nav-item"><a className="nav-link" href="#page-top" style={{fontFamily:'SKYBORI', fontSize:23}}>홈</a></li>
-                        <li className="nav-item"><a className="nav-link" href="#about" style={{fontFamily:'SKYBORI', fontSize:23}}>소개</a></li>
-                        <li className="nav-item"><a className="nav-link" href="#HowTo" style={{fontFamily:'SKYBORI', fontSize:23}}>기부방법</a></li>
+                        <li className="nav-item"><a className="nav-link" href="#about" style={{fontFamily:'SKYBORI', fontSize:23}}>소개 및 기부방법</a></li>
+                        <li className="nav-item"><a className="nav-link" href="#BoardNotice" style={{fontFamily:'SKYBORI', fontSize:23}}>공지사항</a></li>
                         <li className="nav-item"><a className="nav-link" href="#ThanksTo" style={{fontFamily:'SKYBORI', fontSize:23}}>고마운 분들</a></li>
                         <li className="nav-item"><a className="nav-link" href="#ListMember" style={{fontFamily:'SKYBORI', fontSize:23}}>참여한 분들</a></li>
                         <li className="nav-item"><a className="nav-link" href="#Question" style={{fontFamily:'SKYBORI', fontSize:23}}>문의하기</a></li>
