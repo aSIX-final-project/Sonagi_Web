@@ -5,7 +5,7 @@ const Navbar = () => {
 
     return (
         <nav className="navbar navbar-expand-lg navbar-light fixed-top py-3 navbarStyle" id="mainNav">
-            <div className="container px-4 px-lg-5">
+            <div className="container px-4 px-lg-5" >
                 <a className="navbar-brand" href="#page-top">소나기</a>
                 <button className="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
