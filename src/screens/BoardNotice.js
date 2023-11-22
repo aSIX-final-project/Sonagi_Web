@@ -38,14 +38,14 @@ const BoardNotice = () => {
             <div className="scroll-container px-4 px-lg-5" style={{ textAlign: 'center' }}>
                 <h1 className="text-center mt-0" style={{ fontFamily: 'SKYBORI' }}>공지사항</h1>
                 <hr className="divider" />
-
+                <hr />
                 <div style={{ justifyContent: 'center', display: 'flex', flexDirection: 'column' }}>
                     {data && data.slice((page - 1) * itemsPerPage, page * itemsPerPage).map((item, index) => (
                         <div key={index} style={{ marginBottom: '20px' }}>
                             <h3 style={{ fontFamily: 'SKYBORI', fontSize: '30px' }}>제목 : {item.title}</h3>
                             <p>내용 : {item.context}</p>
-                            <p>작성자 : {item.id}</p>  {/* 이 코드는 삭제될 수 있음 */}
                             <p>작성일 : {item.noticeDate}</p>
+                            {/* <p>작성자 : {item.id}</p> */}
                             <hr />
                         </div>
                     ))}
@@ -53,11 +53,12 @@ const BoardNotice = () => {
 
                 <p>현재 페이지: {page} / 총 페이지 수: {Math.ceil(data.length / itemsPerPage)}</p>
 
+                <button onClick={handleClickPrev} style={{ margin: '5px', padding: '10px', borderRadius: '5px', backgroundColor: '#f44336', color: 'white', border: 'none' }}>이전 페이지</button>
+
                 {[...Array(Math.ceil(data.length / itemsPerPage)).keys()].map((item, index) => (
                     <button key={index} onClick={() => handlePageClick(item + 1)} style={{ margin: '5px', padding: '10px', borderRadius: '5px', backgroundColor: '#4CAF50', color: 'white', border: 'none' }}>{item + 1}</button>
                 ))}
 
-                <button onClick={handleClickPrev} style={{ margin: '5px', padding: '10px', borderRadius: '5px', backgroundColor: '#f44336', color: 'white', border: 'none' }}>이전 페이지</button>
                 <button onClick={handleClickNext} style={{ margin: '5px', padding: '10px', borderRadius: '5px', backgroundColor: '#008CBA', color: 'white', border: 'none' }}>다음 페이지</button>
 
             </div>

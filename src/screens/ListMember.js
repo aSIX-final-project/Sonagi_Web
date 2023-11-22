@@ -20,24 +20,35 @@ const ListMember = () => {
     return (
         <section className="page-section" id="ListMember" >
             <div className="scroll-container px-4 px-lg-5">
-                <h2 className="text-center mt-0" style={{fontFamily:'SKYBORI', fontSize:'40px'}}>참여한 분들</h2>
+                <h2 className="text-center mt-0" style={{ fontFamily: 'SKYBORI', fontSize: '40px' }}>참여한 분들</h2>
                 <hr className="divider" />
                 <div className="row gx-4 gx-lg-5">
                     <div className="col-lg-12">
-                        <div className="marquee-container">
+                        <div>
                             <marquee>
                                 {data.map((item, index) => (
-                                    <div key={index} style={{ display: 'inline-block', border: '1px solid black', padding: '10px', margin: '10px', borderRadius: '10px', marginRight:'5%', width: '15%', height: '15%', overflow: 'auto' }}>
-                                        <h3 style={{ color: '#212529', textAlign:'center', fontFamily:'SKYBORI ' }}>{item.adName}</h3>
-                                        <p style={{ color: '#6c757d' }}>전화번호 : {item.adTel} <br></br>주소 : {item.address} <br></br>대표자명 : {item.name} <br></br>전화번호 : {item.phoneNum}</p>
+                                    <div key={index} style={{
+                                        display: 'inline-flex', flexDirection: 'column',  gap: '10px', marginRight: '35px',
+                                        width:'360px',
+                                        height:'200px',
+                                        overflow: 'auto',
+                                        backgroundSize: 'cover', 
+                                        backgroundImage: 'url(./assets/images/busbus.png)', 
+                                        backgroundPosition: 'center', 
+                                        color: '#fff', 
+                                    }}>
+                                        < div style={{marginLeft:'160px'}}>
+                                            <p style={{ color: '#000000', marginRight:'40px', marginTop:'17px',fontFamily: 'SKYBORI ', fontSize:'30px' }}>{item.adName}</p>
+                                            <p style={{ color: '#000000', fontSize:'14px', marginTop:'-19px' }}>전화번호 : {item.adTel} <br></br>주소 : {item.address} <br></br>대표자명 : {item.name} <br></br></p>
+                                        </div>
                                     </div>
                                 ))}
                             </marquee>
                         </div>
                     </div>
-                </div>
-            </div>
-        </section>
+                </div >
+            </div >
+        </section >
     );
 }
 

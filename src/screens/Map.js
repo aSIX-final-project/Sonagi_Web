@@ -42,7 +42,7 @@ function Map() {
         };
         fetchData();
     }, []);
-    
+
     useEffect(() => {
         const container = document.getElementById('map');
         const options = {
@@ -51,17 +51,40 @@ function Map() {
         };
         const map = new kakao.maps.Map(container, options);
 
-        // 마커 그리기
-        locations.forEach((locations) => {
-            console.log(locations);
-            const markerPosition = new kakao.maps.LatLng(locations.coordinates.y, locations.coordinates.x);
+        locations.forEach((location, index) => {
+            console.log(location);
+            const markerPosition = new kakao.maps.LatLng(location.coordinates.y, location.coordinates.x);
             const marker = new kakao.maps.Marker({
                 position: markerPosition
             });
             marker.setMap(map);
+
+            const iwContent = `<div style="max-width: 300px; height: 100px; overflow: hidden; word-wrap: break-word;">
+                            시설명: ${location.adName}<br>
+                            관리자이름: ${location.managerName}<br>
+                            주소: ${location.address}
+                            <span id="closeBtn${index}" style="position: absolute; top: 0; right: 0; cursor: pointer; margin-right:10px;">X</span>
+                        </div>`;
+            const infowindow = new kakao.maps.InfoWindow({
+                content: iwContent
+            });
+
+            kakao.maps.event.addListener(marker, 'click', function () {
+                if (infowindow.getMap()) {
+                    infowindow.close();
+                } else {
+                    infowindow.open(map, marker);
+                    // setTimeout을 이용하여 DOM이 업데이트 된 후 이벤트 핸들러를 추가
+                    setTimeout(() => {
+                        document.getElementById(`closeBtn${index}`).onclick = function () {
+                            infowindow.close();
+                        };
+                    }, 0);
+                }
+            });
         });
 
-    }, [center, locations]); // center state가 변경될 때마다 지도를 새로 그립니다.
+    }, [center, locations]);
 
     return <div id="map" style={{ width: '340px', height: '340px', border: 1, borderRadius: 10 }}></div>;
 }

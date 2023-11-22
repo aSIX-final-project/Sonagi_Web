@@ -8,7 +8,7 @@ const HowTo = () => {
                 <div className="scroll-container">
                     <h2 className="text-center mt-0 text-white"><strong style={{fontFamily:'SKYBORI', fontSize:50}}>기부 방법</strong></h2>
                     <hr className="divider" />
-                    <div className="row gx-4 gx-lg-3" style={{marginLeft:'20%', width:'100%' }}>
+                    <div className="row gx-4 gx-lg-3" style={{display:'flex', justifyContent:'center' }}>
                         <div className="col-lg-2 col-md-6 text-center">
                             <div className="mt-5">
                                 <div className="mb-2" ><i className ="bi bi-download fs-1 text-primary" ></i></div>
@@ -39,7 +39,7 @@ const HowTo = () => {
 
                     </div>
 
-                    <div className="row gx-4 gx-lg-3" style={{marginLeft:'20%', width:'100%'}}>
+                    <div className="row gx-4 gx-lg-3" style={{display:'flex', justifyContent:'center'}}>
 
                  
                         <div className="col-lg-2 col-md-6 text-center">

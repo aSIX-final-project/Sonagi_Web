@@ -9,7 +9,7 @@ import Navbar from './screens/Navbar';
 import ThanksTo from './screens/ThanksTo';
 import BoardNotice from './screens/BoardNotice';
 import WriteNotice from './screens/WriteNotice';  // 공지사항 작성 컴포넌트
-
+import UpdateNotice from './screens/UpdateNotice';  // 공지사항 수정 컴포넌트
 
 function App() {
   return (
@@ -31,6 +31,7 @@ function App() {
           </div>
         } />
         <Route path="adminWrite" element={<WriteNotice />} />
+        <Route path="updateNotice/:textNum" element={<UpdateNotice />} />  
       </Routes>
     </Router>
   );

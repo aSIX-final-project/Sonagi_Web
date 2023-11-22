@@ -26,10 +26,10 @@ const ThanksTo = () => {
     return (
         <section className="page-section" id="ThanksTo" style={{ backgroundColor: '' }}>
             <div className="scroll-container px-4 px-lg-5" style={{ textAlign: 'center' }}>
-                <h1 className="text-center mt-0" style={{fontFamily:'SKYBORI'}}>고마운 분들</h1>
+                <h1 className="text-center mt-0" style={{ fontFamily: 'SKYBORI' }}>고마운 분들</h1>
                 <hr className="divider" />
 
-                <select onChange={handleRegionChange} style={{padding: '10px', fontSize: '16px', borderRadius: '5px'}}>
+                <select onChange={handleRegionChange} style={{ padding: '10px', fontSize: '16px', borderRadius: '5px' }}>
                     {regions.map((region, index) => (
                         <option key={index} value={region}>{region}</option>
                     ))}
@@ -37,13 +37,26 @@ const ThanksTo = () => {
 
                 <div style={{ justifyContent: 'center', display: 'flex' }}>
                     <div className="row gx-4 gx-lg-5 scroll-view" style={{ display: 'flex', flexDirection: 'row', overflowX: 'auto', flexWrap: 'nowrap', width: '1500px' }}>
+                        
                         {data.filter(item => item.regionCategory === filterRegion).map((item, index) => (
-                            <div key={index} className="scroll-item" style={{ height: '300px', width: '490px' }}>
-                                <h3 style={{fontFamily:'SKYBORI', fontSize:'30px'}}>{item.regionCategory} <br></br>제목 : {item.reviewTitle}</h3>
+                            <div key={index} style={{
+                                display: 'flex',
+                                flexDirection: 'column',
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                                height: '400px',
+                                width: '490px',
+                                backgroundImage: "url('./assets/images/posteat.png')",
+                                backgroundSize: 'cover',
+                                backgroundRepeat: 'no-repeat',
+                                backgroundPosition: 'center'
+                            }}>
+                                <h3 style={{ fontFamily: 'SKYBORI', fontSize: '30px' }}>{item.regionCategory} <br></br>제목 : {item.reviewTitle}</h3>
                                 <p>내용 : {item.reviewContext} 작성자 : {item.writer}</p>
                                 <p>작성일 : {item.reviewDate}</p>
                             </div>
                         ))}
+                        
                     </div>
                 </div>
 
