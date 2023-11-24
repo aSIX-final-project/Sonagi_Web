@@ -28,10 +28,22 @@ const ListMember = () => {
 
     return (
         <section className="page-section" id="ListMember" >
-            <div className="scroll-container px-4 px-lg-5">
+            <div className="px-4 px-lg-5">
                 <h2 className="text-center mt-0" style={{ fontFamily: 'SKYBORI', fontSize: '40px' }}>참여한 분들</h2>
+                <div style={{ textAlign: 'right', marginRight:'5%' }}>
+                    <button onClick={handleViewAll} style={{
+                        padding: '10px 20px',
+                        borderRadius: '5px',
+                        backgroundColor: '#58ACFA',
+                        color: 'white',
+                        border: 'none',
+                        fontSize: '16px',
+                        cursor: 'pointer',
+                        outline: 'none'
+                    }}>전체 보기</button>
+                </div>
                 <hr className="divider" />
-                <button onClick={handleViewAll}>전체 보기</button>
+
                 <div className="row gx-4 gx-lg-5">
                     <div className="col-lg-12">
                         <div>
