@@ -23,6 +23,8 @@ const ThanksTo = () => {
         setFilterRegion(event.target.value);
     }
 
+    const filteredData = data.filter(item => item.regionCategory === filterRegion);
+
     return (
         <section className="page-section" id="ThanksTo" style={{ backgroundColor: '' }}>
             <div className="scroll-container px-4 px-lg-5" style={{ textAlign: 'center' }}>
@@ -37,26 +39,31 @@ const ThanksTo = () => {
 
                 <div style={{ justifyContent: 'center', display: 'flex' }}>
                     <div className="row gx-4 gx-lg-5 scroll-view" style={{ display: 'flex', flexDirection: 'row', overflowX: 'auto', flexWrap: 'nowrap', width: '1500px' }}>
-                        
-                        {data.filter(item => item.regionCategory === filterRegion).map((item, index) => (
-                            <div key={index} style={{
-                                display: 'flex',
-                                flexDirection: 'column',
-                                justifyContent: 'center',
-                                alignItems: 'center',
-                                height: '400px',
-                                width: '490px',
-                                backgroundImage: "url('./assets/images/posteat.png')",
-                                backgroundSize: 'cover',
-                                backgroundRepeat: 'no-repeat',
-                                backgroundPosition: 'center'
-                            }}>
-                                <h3 style={{ fontFamily: 'SKYBORI', fontSize: '30px' }}>{item.regionCategory} <br></br>제목 : {item.reviewTitle}</h3>
-                                <p>내용 : {item.reviewContext} 작성자 : {item.writer}</p>
-                                <p>작성일 : {item.reviewDate}</p>
-                            </div>
-                        ))}
-                        
+
+                        {filteredData.length > 0 ? (
+                            filteredData.map((item, index) => (
+                                <div key={index} style={{
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    justifyContent: 'center',
+                                    alignItems: 'center',
+                                    height: '400px',
+                                    width: '490px',
+                                    backgroundImage: "url('./assets/images/posteat.png')",
+                                    backgroundSize: 'cover',
+                                    backgroundRepeat: 'no-repeat',
+                                    backgroundPosition: 'center',
+                                }}>
+                                    <h3 style={{ fontFamily: 'SKYBORI', fontSize: '30px' }}>{item.regionCategory} <br></br>제목 : {item.reviewTitle}</h3>
+
+                                    <p>기부한 사람: {item.donator} 내용 : {item.reviewContext} 기부 받은 사람 : {item.receiver}</p>
+                                    <p>작성일 : {item.reviewDate}</p>
+                                </div>
+                            ))
+                        ) : (
+                            <p style={{display:'flex', textAlign:'center', justifyContent:'center', marginTop:'10%'}}>데이터가 없습니다.</p>
+                        )}
+
                     </div>
                 </div>
 

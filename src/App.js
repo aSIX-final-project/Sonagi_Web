@@ -23,15 +23,15 @@ function App() {
               <About />
               <HowTo />
             </div>
-            <BoardNotice />
+            <BoardNotice/>
             <ThanksTo />
             <ListMember />
             <Outlet />
-            
+
           </div>
         } />
         <Route path="adminWrite" element={<WriteNotice />} />
-        <Route path="updateNotice/:textNum" element={<UpdateNotice />} />  
+        <Route path="updateNotice/:textNum" element={<UpdateNotice />} />
       </Routes>
     </Router>
   );

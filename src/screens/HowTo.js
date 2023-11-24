@@ -6,7 +6,7 @@ const HowTo = () => {
         <section className="page-section bg-dark" id="HowTo">
             <div className="container px-4 px-lg-1" style={{ marginTop: -40, marginBottom: -40 }}>
                 <div className="scroll-container">
-                    <h2 className="text-center mt-0 text-white"><strong style={{fontFamily:'SKYBORI', fontSize:50}}>기부 방법</strong></h2>
+                    <h2 className="text-center mt-0 text-white"><strong style={{fontFamily:'SKYBORI', fontSize:50}}>나눔 방법</strong></h2>
                     <hr className="divider" />
                     <div className="row gx-4 gx-lg-3" style={{display:'flex', justifyContent:'center' }}>
                         <div className="col-lg-2 col-md-6 text-center">

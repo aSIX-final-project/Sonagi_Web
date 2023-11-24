@@ -8,15 +8,23 @@ const UpdateNotice = () => {
     const { textNum } = useParams();
     const navigate = useNavigate();
 
+
     useEffect(() => {
-        axios.get(`http://port-0-sonagi-app-project-1drvf2lloka4swg.sel5.cloudtype.app/boot/notice/find/${textNum}`)
-            .then(response => {
-                setTitle(response.data.title);
-                setContent(response.data.context);
-            })
-            .catch(error => {
+        const fetchData = async () => {
+            try {
+                const response = await axios.post(
+                    "http://port-0-sonagi-app-project-1drvf2lloka4swg.sel5.cloudtype.app/boot/notice/textNumSearch",
+                    textNum
+                );
+                console.log(response.data[0].title);
+                setTitle(response.data[0].title);
+                setContent(response.data[0].context);
+            } catch (error) {
                 console.error(error);
-            });
+            }
+        };
+
+        fetchData();
     }, [textNum]);
 
     const handleTitleChange = (e) => {
@@ -31,13 +39,17 @@ const UpdateNotice = () => {
     }
     const handleSubmit = async (e) => {
         e.preventDefault();
+        console.log(title);
+        console.log(content);
+        console.log(textNum);
         try {
-            await axios.put(`http://port-0-sonagi-app-project-1drvf2lloka4swg.sel5.cloudtype.app/boot/notice/update/${textNum}`, {
+            await axios.post(`http://port-0-sonagi-app-project-1drvf2lloka4swg.sel5.cloudtype.app/boot/notice/modify`, {
                 title: title,
-                context: content
+                context: content,
+                textNum: textNum
             });
             alert('공지사항이 성공적으로 수정되었습니다.');
-            navigate('/');
+            navigate('/adminWrite');
         } catch (error) {
             alert('공지사항 수정에 실패했습니다.');
             console.error(error);
@@ -57,7 +69,7 @@ const UpdateNotice = () => {
                     <textarea value={content} onChange={handleContentChange} style={{ width: '100%', height: '150px', padding: '10px', borderRadius: '5px', border: '1px solid #ccc', marginTop: '5px' }} />
                 </label>
                 <button type="submit" style={{ padding: '10px 20px', borderRadius: '5px', border: 'none', backgroundColor: '#58ACFA', color: 'white', cursor: 'pointer' }}>수정하기</button>
-                <button type="button" onClick={handleBack} style={{ marginLeft:'10px' ,padding: '10px 20px', borderRadius: '5px', border: 'none', backgroundColor: '#58ACFA', color: 'white', cursor: 'pointer' }}>뒤로가기</button>
+                <button type="button" onClick={handleBack} style={{ marginLeft: '10px', padding: '10px 20px', borderRadius: '5px', border: 'none', backgroundColor: '#58ACFA', color: 'white', cursor: 'pointer' }}>뒤로가기</button>
             </form>
         </div>
     );
