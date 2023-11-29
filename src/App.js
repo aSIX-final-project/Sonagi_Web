@@ -19,19 +19,20 @@ function App() {
           <div style={{ overflow: 'hidden' }}>
             <Navbar />
             <Masthead />
-            <div style={{ display: 'flex', flexDirection: 'row', flex: 1 }}>
-              <About />
-              <HowTo />
-            </div>
-            <BoardNotice/>
+            <About />
+            <HowTo />
             <ThanksTo />
             <ListMember />
             <Outlet />
-
           </div>
         } />
         <Route path="adminWrite" element={<WriteNotice />} />
         <Route path="updateNotice/:textNum" element={<UpdateNotice />} />
+        <Route path="/notice" element={
+          <div>
+            <BoardNotice />
+          </div>
+        } />
       </Routes>
     </Router>
   );

@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './ThanksTo.css'; // CSS 파일 import
+import 'aos/dist/aos.css';
+import AOS from 'aos';
+
 
 const ThanksTo = () => {
     const [data, setData] = useState([]);
@@ -19,6 +22,12 @@ const ThanksTo = () => {
             });
     }, []);
 
+    useEffect(() => {
+        AOS.init({
+            duration: 1000
+        });
+    }, []);
+
     const handleRegionChange = (event) => {
         setFilterRegion(event.target.value);
     }
@@ -26,10 +35,10 @@ const ThanksTo = () => {
     const filteredData = data.filter(item => item.regionCategory === filterRegion);
 
     return (
-        <section className="page-section" id="ThanksTo" style={{ backgroundColor: '' }}>
-            <div className="scroll-container px-4 px-lg-5" style={{ textAlign: 'center' }}>
-                <h1 className="text-center mt-0" style={{ fontFamily: 'SKYBORI' }}>고마운 분들</h1>
-                <hr className="divider" />
+        <section className="page-section" id="ThanksTo" style={{ backgroundColor: '', height: '875px' }}>
+            <div data-aos="fade-up"
+                data-aos-anchor-placement="top-bottom" className="scroll-container px-4 px-lg-5" style={{ textAlign: 'center' }}>
+                <h1 className="text-center mt-0" style={{ fontFamily: 'SKYBORI', marginBottom: '2%' }}><strong>소나기와 함께하는 항상 고마운 분들이십니다.</strong></h1>
 
                 <select onChange={handleRegionChange} style={{ padding: '10px', fontSize: '16px', borderRadius: '5px' }}>
                     {regions.map((region, index) => (
@@ -54,14 +63,15 @@ const ThanksTo = () => {
                                     backgroundRepeat: 'no-repeat',
                                     backgroundPosition: 'center',
                                 }}>
-                                    <h3 style={{ fontFamily: 'SKYBORI', fontSize: '30px' }}>{item.regionCategory} <br></br>제목 : {item.reviewTitle}</h3>
-
-                                    <p>기부한 사람: {item.donator} 내용 : {item.reviewContext} 기부 받은 사람 : {item.receiver}</p>
+                                    <h3 style={{ fontFamily: 'SKYBORI', fontSize: '30px' }}>{item.regionCategory} - {item.receiver}</h3>
+                                    <p>작성자: {item.donator}</p>
+                                    <p>제목 : {item.reviewTitle}</p>
+                                    <p>내용 : {item.reviewContext}</p>
                                     <p>작성일 : {item.reviewDate}</p>
                                 </div>
                             ))
                         ) : (
-                            <p style={{display:'flex', textAlign:'center', justifyContent:'center', marginTop:'10%'}}>데이터가 없습니다.</p>
+                            <p style={{ display: 'flex', textAlign: 'center', justifyContent: 'center', marginTop: '10%' }}>데이터가 없습니다.</p>
                         )}
 
                     </div>

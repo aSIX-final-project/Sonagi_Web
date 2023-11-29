@@ -27,10 +27,10 @@ const ListMember = () => {
     }
 
     return (
-        <section className="page-section" id="ListMember" >
+        <section className="page-section" id="ListMember">
             <div className="px-4 px-lg-5">
-                <h2 className="text-center mt-0" style={{ fontFamily: 'SKYBORI', fontSize: '40px' }}>참여한 분들</h2>
-                <div style={{ textAlign: 'right', marginRight:'5%' }}>
+                <h2 className="text-center mt-0" style={{ fontFamily: 'SKYBORI', fontSize: '40px' }}><strong>참여해주신 분들 오늘 하루도 감사합니다.</strong></h2>
+                <div style={{ textAlign: 'right', marginRight: '5%' }}>
                     <button onClick={handleViewAll} style={{
                         padding: '10px 20px',
                         borderRadius: '5px',
@@ -42,15 +42,13 @@ const ListMember = () => {
                         outline: 'none'
                     }}>전체 보기</button>
                 </div>
-                <hr className="divider" />
 
-                <div className="row gx-4 gx-lg-5">
+                <div className="row gx-4 gx-lg-5" style={{marginTop:'3%'}}>
                     <div className="col-lg-12">
                         <div>
                             {showPopup && (
                                 <div style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(0,0,0,0.5)', display: 'flex', justifyContent: 'center', alignItems: 'center', zIndex: 9999 }}>
                                     <div style={{ width: '40%', backgroundColor: 'white', padding: '20px' }}>
-                                        <button onClick={closePopup} style={{ padding: '10px', borderRadius: '5px', backgroundColor: '#58ACFA', color: 'white', border: 'none' }}>닫기</button>
                                         <table style={{ width: '100%', textAlign: 'center', marginTop: '20px' }}>
                                             <thead>
                                                 <tr>
@@ -71,6 +69,9 @@ const ListMember = () => {
                                                 ))}
                                             </tbody>
                                         </table>
+                                        <div style={{textAlign:'center', marginTop:'3%'}}>
+                                            <button onClick={closePopup} style={{ padding: '10px', borderRadius: '5px', backgroundColor: '#58ACFA', color: 'white', border: 'none' }}>닫기</button>
+                                        </div>
                                     </div>
                                 </div>
                             )}

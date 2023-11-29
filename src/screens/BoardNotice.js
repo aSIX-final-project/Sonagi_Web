@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import 'aos/dist/aos.css';
+import AOS from 'aos';
+import { Link } from 'react-router-dom';
+import QRCode from 'qrcode.react';
 
 const BoardNotice = () => {
     const [data, setData] = useState([]);
     const [page, setPage] = useState(1);
     const [popupData, setPopupData] = useState(null);
-    const itemsPerPage = 5; //한번에 보이는 공지사항 개수 결정
+    const itemsPerPage = 3;
 
     useEffect(() => {
         axios.get('http://port-0-sonagi-app-project-1drvf2lloka4swg.sel5.cloudtype.app/boot/notice/findAll')
@@ -16,6 +20,12 @@ const BoardNotice = () => {
             .catch(error => {
                 console.error(error);
             });
+    }, []);
+
+    useEffect(() => {
+        AOS.init({
+            duration: 2000
+        });
     }, []);
 
     const handleClickNext = () => {
@@ -35,12 +45,18 @@ const BoardNotice = () => {
     }
 
     return (
-        <section className="page-section" id="BoardNotice" style={{ backgroundColor: '', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
-            <div className="scroll-container px-4 px-lg-5" style={{ textAlign: 'center', width: '70%' }}>
-                <h1 className="text-center mt-0" style={{ fontFamily: 'SKYBORI' }}>공지사항</h1>
-                <hr className="divider" />
-
-                <table style={{ width: '100%', textAlign: 'center', marginLeft: '5%' }}>
+        <section className="page-section" id="BoardNotice" style={{ backgroundColor: '', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '875px' }}>
+            <div data-aos="fade-up" data-aos-anchor-placement="bottom-bottom" style={{ marginBottom:'10%', marginRight:'50%'}}>
+                <div style={{ marginBottom: '7%' }}><strong>앱 다운로드하고 쉽게 나눔하러 가기</strong></div>
+                <div style={{ marginLeft: '10%' }}>
+                    <QRCode value="https://www.naver.com" size={130} bgColor="#524841"
+                        fgColor="#FFFFFF" style={{ border: 1, borderRadius: 5 }} />
+                </div>
+            </div>
+            <div data-aos="fade-up" data-aos-anchor-placement="bottom-bottom" className="scroll-container px-4 px-lg-5" style={{ textAlign: 'center', width: '70%', marginTop:'-150px'  }}>
+                <h1 className="text-center mt-0" style={{ fontFamily: 'SKYBORI'}}><strong>공지사항</strong></h1>
+                <Link className="nav-link" to="/" style={{ fontFamily: 'SKYBORI', fontSize: 23, textAlign: 'right' }}>뒤로가기</Link>
+                <table style={{ width: '100%', textAlign: 'center', marginTop: '3%' }}>
                     <thead style={{ borderTop: '2px solid black', borderBottom: '2px solid black' }}>
                         <tr>
                             <th style={{ fontFamily: 'SKYBORI', fontWeight: 'bold', fontSize: '25px' }}>번호</th>
@@ -58,24 +74,26 @@ const BoardNotice = () => {
                         ))}
                     </tbody>
                 </table>
+
                 <p>현재 페이지: {page} / 총 페이지 수: {Math.ceil(data.length / itemsPerPage)}</p>
-                <div style={{ display: 'flex', justifyContent: 'center' }}>
-                    {page > 1 && <button onClick={handleClickPrev} style={{ margin: '5px', padding: '10px', borderRadius: '5px', backgroundColor: '#f44336', color: 'white', border: 'none' }}>이전</button>}
+                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                    {page > 1 && <button onClick={handleClickPrev} style={{ margin: '10px', padding: '10px', backgroundColor: '#FFFFFF', color: '#000000', border: '1px solid #DDDDDD', borderRadius: '3px' }}>이전</button>}
                     {[...Array(Math.ceil(data.length / itemsPerPage)).keys()].map((item, index) => (
-                        <button key={index}
+                        <span key={index}
                             onClick={() => handlePageClick(item + 1)}
                             style={{
                                 margin: '5px',
                                 padding: '10px',
-                                borderRadius: '5px',
-                                backgroundColor: page === item + 1 ? '#FFD700' : '#4CAF50',
-                                color: 'white',
-                                border: 'none'
+                                backgroundColor: page === item + 1 ? '#000000' : '#FFFFFF',
+                                color: page === item + 1 ? '#FFFFFF' : '#000000',
+                                border: '1px solid #DDDDDD',
+                                borderRadius: '100px',
+                                cursor: 'pointer'
                             }}>
                             {item + 1}
-                        </button>
+                        </span>
                     ))}
-                    {page < Math.ceil(data.length / itemsPerPage) && <button onClick={handleClickNext} style={{ margin: '5px', padding: '10px', borderRadius: '5px', backgroundColor: '#008CBA', color: 'white', border: 'none' }}>다음</button>}
+                    {page < Math.ceil(data.length / itemsPerPage) && <button onClick={handleClickNext} style={{ margin: '10px', padding: '10px', backgroundColor: '#FFFFFF', color: '#000000', border: '1px solid #DDDDDD', borderRadius: '3px' }}>다음</button>}
                 </div>
 
 
