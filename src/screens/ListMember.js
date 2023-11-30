@@ -29,7 +29,7 @@ const ListMember = () => {
     return (
         <section className="page-section" id="ListMember">
             <div className="px-4 px-lg-5">
-                <h2 className="text-center mt-0" style={{ fontFamily: 'SKYBORI', fontSize: '40px' }}><strong>참여해주신 분들 오늘 하루도 감사합니다.</strong></h2>
+                <h2 className="text-center mt-0" style={{ fontFamily: 'SKYBORI', fontSize: '40px' }}><strong>참여해주신 모든 분들 오늘도 감사합니다.</strong></h2>
                 <div style={{ textAlign: 'right', marginRight: '5%' }}>
                     <button onClick={handleViewAll} style={{
                         padding: '10px 20px',

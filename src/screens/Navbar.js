@@ -1,6 +1,7 @@
 import React from 'react';
 import './Navbar.css';
 import { Link } from 'react-router-dom';
+import { FaArrowUpRightFromSquare } from "react-icons/fa6";
 
 const Navbar = () => {
 
@@ -18,7 +19,7 @@ const Navbar = () => {
                         <li className="nav-item"><a className="nav-link" href="#HowTo" style={{fontFamily:'SKYBORI', fontSize:23}}>나눔방법</a></li>
                         <li className="nav-item"><a className="nav-link" href="#ThanksTo" style={{fontFamily:'SKYBORI', fontSize:23}}>고마운 분들</a></li>
                         <li className="nav-item"><a className="nav-link" href="#ListMember" style={{fontFamily:'SKYBORI', fontSize:23}}>참여해주신 분들</a></li>
-                        <li className="nav-item"><Link className="nav-link" to="/notice" style={{ fontFamily: 'SKYBORI', fontSize: 23 }}>공지사항 보러가기</Link></li>
+                        <li className="nav-item"><Link className="nav-link" to="/notice" style={{ fontFamily: 'SKYBORI', fontSize: 23 }}>공지사항 보러가기 <FaArrowUpRightFromSquare size={15}/></Link></li>
                     </ul>
                 </div>
             </div>
