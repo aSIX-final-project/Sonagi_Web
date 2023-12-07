@@ -2,3 +2,106 @@
     display: flex;
     justify-content: center;
 }
+#slider-container {
+    height: 1000px;
+    width: 100vw;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+
+    padding-top: 10.5%;
+  }
+  .slider {
+    position: absolute;
+    display: flex;
+    flex-flow: row nowrap;
+  }
+  .slider-instant {
+    transition: none;
+  }
+  .slider-animate {
+    margin-left: 0;
+  }
+  .slider-extra {
+    display: flex;
+    flex-flow: row nowrap;
+  }
+  .slider-last {
+    min-width: 100vw;
+    max-width: 100vw;
+    overflow: hidden;
+  }
+  .slider span {
+    margin-right: 30px;
+  }
+  .slider .slider-extra {
+    margin-right: 0;
+  }
+
+
+  /* 모든 이미지에 대한 기본 크기 설정 */
+ .img2 {
+    width: auto;
+    height: auto;
+    max-width: 300px;
+    object-fit: cover;
+  }
+
+  .img4 {
+    width: auto;
+    height: auto;
+    max-width: 270px;
+    max-height: 260px;
+    object-fit: cover;
+  }
+
+  .img6 {
+    width: auto;
+    height: auto;
+    max-width: 230px;
+    max-height: 262px;
+    margin-left: 20px;
+    margin-right: 20px;
+    object-fit: cover;
+  }
+
+  .img8 {
+    width: auto;
+    height: auto;
+    max-width: 250px;
+    max-height: 260px;
+    margin-left: 40px;
+    margin-right: 40px;
+    object-fit: cover;
+  }
+
+  .img10 {
+    width: auto;
+    height: auto;
+    max-width: 390px;
+    max-height: 330px;
+    object-fit: cover;
+  }
+
+  .img12 {
+    width: auto;
+    height: auto;
+    max-width: 380px;
+    max-height: 260px;
+    object-fit: cover;
+    margin-left: 40px;
+
+  }
+  
+  /* img2에 대한 크기 설정 */
+  .img3, .img5, .img7, .img9, .img11 {
+    width: 70px;
+    height: 50px;
+    object-fit: cover;
+    margin-top: 150%;
+  }
+  .slider-line {
+    height: 1px;
+    background-color: #000;
+    width: 100%;
+  }

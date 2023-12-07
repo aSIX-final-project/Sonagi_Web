@@ -27,6 +27,22 @@
   font-family: "SKYBORI";         
   src: url("./assets/fonts/SKYBORI.ttf"); 
 }
+
+@font-face {
+  font-family: "PLAYBOLD";         
+  src: url("./assets/fonts/Play-Bold.ttf"); 
+}
+
+@font-face {
+  font-family: "PLAYREGULAR";         
+  src: url("./assets/fonts/Play-Regular.ttf"); 
+}
+
+@font-face {
+  font-family: "BMJUA_ttf";         
+  src: url("./assets/fonts/BMJUA_ttf.ttf"); 
+}
+
 body {
   font-family: 'SKYBORI';
 }

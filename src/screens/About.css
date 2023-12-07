@@ -14,3 +14,13 @@
     /* 원하는 간격으로 조절 */
     margin-bottom: 10px;
 }
+
+@keyframes slideFromLeft {
+    0%   {transform: translateX(-100%);}
+    100% {transform: translateX(0);}
+}
+
+@keyframes slideFromRight {
+    0%   {transform: translateX(100%);}
+    100% {transform: translateX(0);}
+}

@@ -19,54 +19,62 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.css" rel="stylesheet" />
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="css/styles.css" rel="stylesheet" />
-
+    <style>
+        .copyright {
+            border-top: 1px solid #AAAAAA;
+            font-size: 18px;
+        }
+    </style>
 </head>
 
 <body id="page-top">
     <div id="root"></div>
 
     <section class="section bg-white">
-        <footer class="bg-light py-5">
-
+        <footer class="bg-white py-2">
             <div class="container px-4 px-lg-5" style="text-align: center;">
                 <div class="row gx-4 gx-lg-5">
                     <div class="col-lg-3 col-md-6 text-center">
                         <div class="mt-5">
-                            <h2 class="h2 mb-2" style="font-family: SKYBORI; font-size:20px; margin-bottom: -10%;">사업장 주소</h2>
                             <div class="mb-2">
                                 <a href="https://map.naver.com/p/search/%EC%B6%A9%EC%B2%AD%EB%82%A8%EB%8F%84%20%EC%95%84%EC%82%B0%EC%8B%9C%20%ED%83%95%EC%A0%95%EB%A9%B4%20%EC%84%A0%EB%AC%B8%EB%A1%9C221%EB%B2%88%EA%B8%B8%2070/address/14145913.7728633,4411147.3249289,%EC%B6%A9%EC%B2%AD%EB%82%A8%EB%8F%84%20%EC%95%84%EC%82%B0%EC%8B%9C%20%ED%83%95%EC%A0%95%EB%A9%B4%20%EC%84%A0%EB%AC%B8%EB%A1%9C221%EB%B2%88%EA%B8%B8%2070,new?isCorrectAnswer=true&c=15.00,0,0,0,dh"
-                                    target="_blank"><i class="bi-house fs-1" style="color:black"></i></a>
+                                    target="_blank"><i class="bi-house fs-1" style="color:#CCCCCC"></i></a>
                             </div>
-                            <p class="text-muted mb-0" style="font-size: 15px; margin-top: -10%;">충청남도 아산시 탕정면 선문로221번길 70</p>
+                            <p class="text-muted mb-0" style="font-size: 11px; margin-top: -10%;">서울시 강남구 테헤란로 410</p>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6 text-center ">
                         <div class="mt-5">
-                            <h2 class="h2 mb-2" style="font-family: SKYBORI; font-size:20px; margin-bottom: -10%;">문의 전화번호</h2>
-                            <div class="mb-2"><i class="bi bi-telephone fs-1" style="color:black"></i></div>
-                            <p class="text-muted mb-0" style="font-size: 15px; margin-top: -10%;">82+ 10-7766-3945</p>
+                            <div class="mb-2"><i class="bi bi-telephone fs-1" style="color:#CCCCCC"></i></div>
+                            <p class="text-muted mb-0" style="font-size: 11px; margin-top: -10%;">82+ 10-0000-0000</p>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6 text-center">
                         <div class="mt-5">
-                            <h2 class="h2 mb-2" style="font-family: SKYBORI; font-size:20px; margin-bottom: -10%;">문의 이메일</h2>
                             <div class="mb-2"><a href="mailto:yhoka@naver.com"><i class="bi bi-envelope fs-1"
-                                        style="color:black"></i></a></div>
-                            <p class="text-muted mb-0" style="font-size: 15px; margin-top: -10%;">yhoka@naver.com</p>
+                                        style="color:#CCCCCC"></i></a></div>
+                            <p class="text-muted mb-0" style="font-size: 13px; margin-top: -12%;">sonagi@sonagi.kr</p>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6 text-center">
                         <div class="mt-5">
-                            <h2 class="h2 mb-2" style="font-family: SKYBORI; font-size:20px; margin-bottom: -10%;">인스타그램</h2>
                             <div class="mb-2"><a href="https://instagram.com/yeonghhak" target="_blank">
-                                    <i class="bi bi-instagram fs-1" style="color:black"></i>
+                                    <i class="bi bi-instagram fs-1" style="color:#CCCCCC"></i>
                                 </a></div>
-                            <p class="text-muted mb-0" style="font-size: 15px; margin-top: -10%;">@yeonghhak</p>
+                            <p class="text-muted mb-0" style="font-size: 13px; margin-top: -12%;">@instagram</p>
                         </div>
                     </div>
                 </div>
             </div>
-            <div style="text-align: center;">Copyright &copy; 2023 - Sonagi</div>
+
+            <div style="text-align: center; margin-top: 1.5%; color: #807f7f;" class="copyright">
+                Copyright &copy; 2023 - Sonagi
+            </div>
+            <div id="experience-bar"
+                style="position: fixed; top: 0; left: 0; width: 100%; height: 7px; background: gray; z-index: 9999;">
+                <div id="experience-gauge" style="height: 100%; background: #44A5FF; width: 0;"></div>
+            </div>
+
         </footer>
     </section>
 
@@ -78,8 +86,19 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.js"></script>
     <!-- Core theme JS-->
     <script src="js/scripts.js"></script>
-    <script type="text/javascript"
-        src="//dapi.kakao.com/v2/maps/sdk.js?appkey=1d36d8e3148cff96991f68bd2f32c26a"></script>
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=1d36d8e3148cff96991f68bd2f32c26a">
+    </script>
+    <script>
+        window.onscroll = function () {
+            var scrollHeight = document.documentElement.scrollHeight;
+            var clientHeight = document.documentElement.clientHeight;
+            var scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+            var scrollPercentage = (scrollPosition / (scrollHeight - clientHeight)) * 100;
+
+            var experienceGauge = document.getElementById('experience-gauge');
+            experienceGauge.style.width = scrollPercentage + '%';
+        };
+    </script>
 </body>
 
 </html>

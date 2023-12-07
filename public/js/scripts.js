@@ -1,6 +1,6 @@
 window.addEventListener('DOMContentLoaded', event => {
 
-    // Navbar shrink function
+    // Navbar shrink function (네비바 스크롤)
     var navbarShrink = function () {
         const navbarCollapsible = document.body.querySelector('#mainNav');
         if (!navbarCollapsible) {

@@ -3,13 +3,15 @@ import axios from 'axios';
 import 'aos/dist/aos.css';
 import AOS from 'aos';
 import { Link } from 'react-router-dom';
-import QRCode from 'qrcode.react';
+import './BoardNotice.css';
 
 const BoardNotice = () => {
+
     const [data, setData] = useState([]);
     const [page, setPage] = useState(1);
-    const [popupData, setPopupData] = useState(null);
-    const itemsPerPage = 3;
+    const [selectedItem, setSelectedItem] = useState(null);
+    const itemsPerPage = 6;
+    const [showModal, setShowModal] = useState(false);
 
     useEffect(() => {
         axios.get('http://port-0-sonagi-app-project-1drvf2lloka4swg.sel5.cloudtype.app/boot/notice/findAll')
@@ -24,9 +26,30 @@ const BoardNotice = () => {
 
     useEffect(() => {
         AOS.init({
-            duration: 2000
+            duration: 700
         });
     }, []);
+
+    // 모달창 생성
+    const openModal = async (item) => {
+        try {
+            // Fetch additional details for the selected item using its ID or any unique identifier
+            const detailsResponse = await axios.get(`http://port-0-sonagi-app-project-1drvf2lloka4swg.sel5.cloudtype.app/boot/notice/findAll`);
+            const details = detailsResponse.data;
+
+            // Update the selected item with additional details
+            setSelectedItem({ ...item, details });
+            setShowModal(true);
+            document.body.style.overflow = 'hidden';
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
+    const closeModal = () => {
+        setShowModal(false);
+        document.body.style.overflow = 'unset';
+    }
 
     const handleClickNext = () => {
         if (page < Math.ceil(data.length / itemsPerPage)) {
@@ -45,38 +68,96 @@ const BoardNotice = () => {
     }
 
     return (
-        <section className="page-section" id="BoardNotice" style={{ backgroundColor: '', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '875px' }}>
-            <div data-aos="fade-up" data-aos-anchor-placement="bottom-bottom" style={{ marginBottom:'10%', marginRight:'50%'}}>
-                <div style={{ marginBottom: '7%' }}><strong>앱 다운로드하고 쉽게 나눔하러 가기</strong></div>
-                <div style={{ marginLeft: '10%' }}>
-                    <QRCode value="https://www.naver.com" size={130} bgColor="#524841"
-                        fgColor="#FFFFFF" style={{ border: 1, borderRadius: 5 }} />
-                </div>
-            </div>
-            <div data-aos="fade-up" data-aos-anchor-placement="bottom-bottom" className="scroll-container px-4 px-lg-5" style={{ textAlign: 'center', width: '70%', marginTop:'-150px'  }}>
-                <h1 className="text-center mt-0" style={{ fontFamily: 'SKYBORI'}}><strong>공지사항</strong></h1>
-                <Link className="nav-link" to="/" style={{ fontFamily: 'SKYBORI', fontSize: 23, textAlign: 'right' }}>뒤로가기</Link>
-                <table style={{ width: '100%', textAlign: 'center', marginTop: '3%' }}>
-                    <thead style={{ borderTop: '2px solid black', borderBottom: '2px solid black' }}>
-                        <tr>
-                            <th style={{ fontFamily: 'SKYBORI', fontWeight: 'bold', fontSize: '25px' }}>번호</th>
-                            <th style={{ fontFamily: 'SKYBORI', fontWeight: 'bold', fontSize: '25px' }}>제목</th>
-                            <th style={{ fontFamily: 'SKYBORI', fontWeight: 'bold', fontSize: '25px' }}>작성일</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {data && data.slice((page - 1) * itemsPerPage, page * itemsPerPage).map((item, index) => (
-                            <tr key={index}>
-                                <td><div style={{ fontFamily: 'SKYBORI', fontSize: '17px' }}>{(page - 1) * itemsPerPage + (index + 1)}</div></td>
-                                <td onClick={() => setPopupData(item)} style={{ fontFamily: 'SKYBORI', fontSize: '17px', cursor: 'pointer' }}>{item.title}</td>
-                                <td><div style={{ fontFamily: 'SKYBORI', fontSize: '17px' }}>{new Date(item.noticeDate).toLocaleString().split(':').slice(0, -1).join(':')}</div></td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
+        <section className="page-section" id="BoardNotice" style={{ backgroundColor: '', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '1000px', marginBottom:'20%' }}>
 
-                <p>현재 페이지: {page} / 총 페이지 수: {Math.ceil(data.length / itemsPerPage)}</p>
-                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+
+            <div style={{ width: '100%' }}>
+                <div>
+                    <div className="header">
+                        <div className="inner-header flex">
+                            <svg
+                                version="1.1"
+                                className="logo"
+                                baseProfile="tiny"
+                                id="Layer_1"
+                                xmlns="http://www.w3.org/2000/svg"
+                                xmlnsXlink="http://www.w3.org/1999/xlink"
+                                x="0px"
+                                y="0px"
+                                viewBox="0 0 500 500"
+                                xmlSpace="preserve"
+                            >
+                                <path fill="#FFFFFF" stroke="#000000" strokeWidth="10" strokeMiterlimit="10" d="M57,283" />
+
+                            </svg>
+                        </div>
+                        <div>
+                            <svg
+                                className="waves"
+                                xmlns="http://www.w3.org/2000/svg"
+                                xmlnsXlink="http://www.w3.org/1999/xlink"
+                                viewBox="0 24 150 28"
+                                preserveAspectRatio="none"
+                                shapeRendering="auto"
+                            >
+                                <defs>
+                                    <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+                                </defs>
+                                <g className="parallax">
+                                    <use xlinkHref="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.7" />
+                                    <use xlinkHref="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.5)" />
+                                    <use xlinkHref="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.3)" />
+                                    <use xlinkHref="#gentle-wave" x="48" y="7" fill="#fff" />
+                                </g>
+                            </svg>
+                        </div>
+                    </div>
+                    <div className="content2 flex">
+                        <div class="container2">
+                            <div class="chevron"></div>
+                            <div class="chevron"></div>
+                            <div class="chevron"></div>
+                            <span class="text2">Scroll down</span>
+                        </div>
+                    </div>
+                </div>
+                <div data-aos="fade-in" data-aos-anchor-placement="bottom-bottom" className="scroll-container px-4 px-lg-5" style={{ textAlign: 'center', width: '100%', marginTop: '20%', marginBottom: '3%' }}>
+
+
+                    <div id="container">
+                        <h1 className="text-center mt-0" style={{ width: '40%', fontFamily: 'SKYBORI', fontSize: 50, marginRight: '65%', }}><strong>공지사항</strong></h1>
+                        <Link className="nav-link2" to="/" >
+                            <button class="learn-more">
+                                <span class="circle" aria-hidden="true">
+                                    <span class="icon arrow"></span>
+                                </span>
+                                <span class="button-text">뒤로가기</span>
+                            </button>
+                        </Link>
+                    </div>
+                    <table style={{ width: '100%', textAlign: 'center', marginTop: '3%' }}>
+                        <thead style={{ borderBottom: '2px solid #AAAAAA' }}>
+                            <tr>
+                                <th style={{ fontFamily: 'SKYBORI', fontWeight: 'bold', fontSize: '25px' }}>번호</th>
+                                <th style={{ fontFamily: 'SKYBORI', fontWeight: 'bold', fontSize: '25px' }}>제목</th>
+                                <th style={{ fontFamily: 'SKYBORI', fontWeight: 'bold', fontSize: '25px' }}>작성일</th>
+                            </tr>
+                        </thead>
+                        <tbody style={{ height: '80px', width: '100%'}}>
+                            {data && data.slice((page - 1) * itemsPerPage, page * itemsPerPage).map((item, index) => (
+                                <tr key={index}>
+                                    <td><div style={{ fontFamily: 'SKYBORI', fontSize: '20px' }}>{(page - 1) * itemsPerPage + (index + 1)}</div></td>
+                                    <td onClick={() => openModal(item)} style={{ fontFamily: 'SKYBORI', fontSize: '20px', cursor: 'pointer' }}>{item.title}</td>
+                                    <td><div style={{ fontFamily: 'SKYBORI', fontSize: '20px' }}>{new Date(item.noticeDate).toLocaleString().split(':').slice(0, -1).join(':')}</div></td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+
+
+
+                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '0%',Bottom: 10, }}>
                     {page > 1 && <button onClick={handleClickPrev} style={{ margin: '10px', padding: '10px', backgroundColor: '#FFFFFF', color: '#000000', border: '1px solid #DDDDDD', borderRadius: '3px' }}>이전</button>}
                     {[...Array(Math.ceil(data.length / itemsPerPage)).keys()].map((item, index) => (
                         <span key={index}
@@ -84,11 +165,15 @@ const BoardNotice = () => {
                             style={{
                                 margin: '5px',
                                 padding: '10px',
+                                width: '42px',
+                                height: '42px',
+                                lineHeight: '25px',
+                                textAlign: 'center',
                                 backgroundColor: page === item + 1 ? '#000000' : '#FFFFFF',
                                 color: page === item + 1 ? '#FFFFFF' : '#000000',
-                                border: '1px solid #DDDDDD',
-                                borderRadius: '100px',
-                                cursor: 'pointer'
+                                borderRadius: 100,
+                                cursor: 'pointer',
+                                fontSize: '14px'
                             }}>
                             {item + 1}
                         </span>
@@ -97,30 +182,33 @@ const BoardNotice = () => {
                 </div>
 
 
-                {popupData && (
-                    <div style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(0,0,0,0.5)', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                        <div style={{ width: '40%', backgroundColor: 'white', padding: '20px' }}>
-                            <table style={{ width: '100%', textAlign: 'center' }}>
-                                <tbody>
-                                    <tr>
-                                        <td style={{ fontFamily: 'SKYBORI', fontWeight: 'bold', fontSize: '25px' }}>{popupData.title}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <hr></hr>
-                            <table style={{ width: '100%', textAlign: 'center', marginTop: '20px' }}>
-                                <tbody>
-                                    <tr>
-                                        <td style={{ fontFamily: 'SKYBORI', fontSize: '17px' }}>{popupData.context}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
-                                <button onClick={() => setPopupData(null)} style={{ padding: '10px', borderRadius: '5px', backgroundColor: '#58ACFA', color: 'white', border: 'none' }}>닫기</button>
+                {showModal && selectedItem && (
+                    <div className="BNmodal">
+                        <div className="BNmodal-content">
+                            <div className='BNclosediv'>
+                                <span className="BNclose" onClick={closeModal}>&times;</span>
                             </div>
+                           
+                            <table class="BNnotice-table">
+                                <thead>
+                                    <tr>
+                                        <th>제목</th>
+                                        <th>내용</th>
+                                        <th>작성일</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="BNtitle">{selectedItem.title}</td>
+                                        <td class="BNcontent">{selectedItem.context}</td>
+                                        <td class="BNmonth">{selectedItem.noticeDate}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 )}
+
             </div>
         </section>
     );

@@ -1,106 +1,108 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React from 'react';
 import './ListMember.css';
+import joinsonagi from '../assets/images/joinsonagi.png'
+import axios from 'axios';
 
-const ListMember = () => {
-    const [data, setData] = useState([]);
-    const [showPopup, setShowPopup] = useState(false);
+class ListMember extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      members: [],
+      showModal: false,
+      modalImage: null,
+      modalInfo: null,
+      restaurant: null,
+    };
+  }
 
-    useEffect(() => {
-        axios.get('http://port-0-sonagi-app-project-1drvf2lloka4swg.sel5.cloudtype.app/boot/restaurant/findAll')
-            .then(response => {
-                console.log("listMember");
-                console.log(response.data);
-                setData(response.data.list);
-            })
-            .catch(error => {
-                console.error(error);
-            });
-    }, []);
+  componentDidMount() {
+    axios.get('http://port-0-sonagi-app-project-1drvf2lloka4swg.sel5.cloudtype.app/boot/donation/findAll')
+      .then(response => {
+        this.setState({ members: response.data.slice(0, 9) });
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  }
 
-    const handleViewAll = () => {
-        setShowPopup(true);
-    }
+  openModal = (src, member) => {
+    axios.post(`http://port-0-sonagi-app-project-1drvf2lloka4swg.sel5.cloudtype.app/boot/member/findById`, {
+      id: member.donatedReceiver
+    })
 
-    const closePopup = () => {
-        setShowPopup(false);
-    }
+      .then(response => {
+        console.log(response);
+        this.setState({
+          restaurant: response.data[0],
+        });
 
+      })
+      .catch(error => {
+        console.error(error);
+      });
+
+    this.setState({
+      showModal: true,
+      modalImage: src,
+      modalInfo: member,
+    }, () => {
+      document.body.style.overflow = 'hidden';
+    });
+
+  }
+
+  closeModal = () => {
+    this.setState({
+      showModal: false,
+      modalImage: null,
+    }, () => {
+      document.body.style.overflow = 'unset';
+    });
+  }
+
+
+  render() {
     return (
-        <section className="page-section" id="ListMember">
-            <div className="px-4 px-lg-5">
-                <h2 className="text-center mt-0" style={{ fontFamily: 'SKYBORI', fontSize: '40px' }}><strong>참여해주신 모든 분들 오늘도 감사합니다.</strong></h2>
-                <div style={{ textAlign: 'right', marginRight: '5%' }}>
-                    <button onClick={handleViewAll} style={{
-                        padding: '10px 20px',
-                        borderRadius: '5px',
-                        backgroundColor: '#58ACFA',
-                        color: 'white',
-                        border: 'none',
-                        fontSize: '16px',
-                        cursor: 'pointer',
-                        outline: 'none'
-                    }}>전체 보기</button>
-                </div>
+      <div id="ListMember">
+        <img src={joinsonagi} alt="joinsonagi" style={{ width: '19%', marginLeft: '3.8%', marginTop: '1.5%', marginBottom: '1%' }} />
+        <div className="gallery">
+          {this.state.members.map((member, index) => (
+            <div className="gallery-tile" key={index} onClick={() => this.openModal(member.foodImage, member)}>
+              <div className="picture-info">
+              </div>
+              <img src={member.foodImage} alt={member.foodTitle} />
+            </div>
+          ))}
+        </div>
+        {this.state.showModal && this.state.modalInfo &&
+          <div className="lMmodal">
+            <div className="lMmodal-content">
+              <div className='lMclosediv'>
+                <span className="lMclose" onClick={this.closeModal}>&times;</span>
+              </div>
+              <img src={this.state.modalImage} className='lMmodal-image' />
+              <table className="lMinfo-table">
+                <tr className="lMinfo-table-row1">
+                  <td>상호명</td>
+                  <td>기부 양</td>
+                  <td>기부 금액</td>
+                  <td>기부 받은 업체</td>
+                </tr>
+                <tr>
 
-                <div className="row gx-4 gx-lg-5" style={{marginTop:'3%'}}>
-                    <div className="col-lg-12">
-                        <div>
-                            {showPopup && (
-                                <div style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(0,0,0,0.5)', display: 'flex', justifyContent: 'center', alignItems: 'center', zIndex: 9999 }}>
-                                    <div style={{ width: '40%', backgroundColor: 'white', padding: '20px' }}>
-                                        <table style={{ width: '100%', textAlign: 'center', marginTop: '20px' }}>
-                                            <thead>
-                                                <tr>
-                                                    <th>이름</th>
-                                                    <th>전화번호</th>
-                                                    <th>주소</th>
-                                                    <th>대표자명</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                {data.map((item, index) => (
-                                                    <tr key={index}>
-                                                        <td>{item.adName}</td>
-                                                        <td>{item.adTel}</td>
-                                                        <td>{item.address}</td>
-                                                        <td>{item.name}</td>
-                                                    </tr>
-                                                ))}
-                                            </tbody>
-                                        </table>
-                                        <div style={{textAlign:'center', marginTop:'3%'}}>
-                                            <button onClick={closePopup} style={{ padding: '10px', borderRadius: '5px', backgroundColor: '#58ACFA', color: 'white', border: 'none' }}>닫기</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            )}
-                            <marquee>
-                                {data.map((item, index) => (
-                                    <div key={index} style={{
-                                        display: 'inline-flex', flexDirection: 'column', gap: '10px', marginLeft: '-150px',
-                                        width: '660px',
-                                        height: '270px',
-                                        overflow: 'auto',
-                                        backgroundSize: 'cover',
-                                        backgroundImage: 'url(./assets/images/busbus.gif)',
-                                        backgroundPosition: 'center',
-                                        color: '#fff',
-                                    }}>
-                                        <div style={{ marginLeft: '300px', marginTop: '10px' }}>
-                                            <p style={{ color: '#000000', marginRight: '40px', marginTop: '17px', fontFamily: 'SKYBORI ', fontSize: '30px' }}>{item.adName}</p>
-                                            <p style={{ color: '#000000', fontSize: '14px', marginTop: '-19px' }}>전화번호 : {item.adTel} <br></br>주소 : {item.address} <br></br>대표자명 : {item.name} <br></br></p>
-                                        </div>
-                                    </div>
-                                ))}
-                            </marquee>
-                            <img src='./assets/images/doro.png' style={{ height: '20px', width: '1815px', marginTop: '-20px' }}></img>
-                        </div>
-                    </div>
-                </div >
-            </div >
-        </section >
+                  <td>{this.state.modalInfo.foodTitle}</td>
+                  <td>{this.state.modalInfo.donatedAmount}</td>
+                  <td>{this.state.modalInfo.donatedPrice}</td>
+                  <td>{this.state.restaurant ? this.state.restaurant.adName : 'Loading...'}</td>
+
+                </tr>
+              </table>
+            </div>
+          </div>
+        }
+      </div>
     );
+  }
 }
 
 export default ListMember;

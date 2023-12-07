@@ -24,7 +24,7 @@ function Map() {
             console.log(res.data);
             console.log("ㅎㅇㅎㅇ");
             console.log(res.data.list);
-            const fetchPromises = res.data.list.map(async item => {
+            const fetchPromises = res.data.map(async item => {
                 const response = await fetch(`https://dapi.kakao.com/v2/local/search/address.json?query=${item.address}`, {
                     headers: {
                         Authorization: 'KakaoAK db06c51425b99419a11f3881f8491642'

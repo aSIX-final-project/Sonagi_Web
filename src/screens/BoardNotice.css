@@ -1,0 +1,417 @@
+@import url('https://fonts.googleapis.com/css?family=Mukta:700');
+
+/* 스크롤바 전체 크기 설정 */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 10px;
+}
+
+/* 스크롤바 배경색 */
+::-webkit-scrollbar-track {
+  background-color: #f5f5f5;
+}
+
+/* 스크롤바 색상 */
+::-webkit-scrollbar-thumb {
+  background-color: #c1c1c1;
+  border-radius: 10px;
+
+  /* 스크롤바가 호버 상태일 때 색상 변경 */
+  &:hover {
+    background-color: #555;
+  }
+}
+
+button {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  outline: none;
+  border: 0;
+  vertical-align: middle;
+  text-decoration: none;
+  background: transparent;
+  padding: 0;
+  font-size: inherit;
+  font-family: inherit;
+}
+
+button.learn-more {
+  width: 12rem;
+  height: auto;
+}
+
+button.learn-more .circle {
+  transition: all 0.45s cubic-bezier(0.65, 0, .076, 1);
+  position: relative;
+  display: block;
+  margin: 0;
+  width: 3rem;
+  height: 3rem;
+  background: #282936;
+  border-radius: 1.625rem;
+}
+
+button.learn-more .circle .icon {
+  transition: all 0.45s cubic-bezier(0.65, 0, .076, 1);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  background: #fff;
+}
+
+button.learn-more .circle .icon.arrow {
+  transition: all 0.45s cubic-bezier(0.65, 0, .076, 1);
+  left: 0.625rem;
+  width: 1.125rem;
+  height: 0.125rem;
+  background: none;
+}
+
+button.learn-more .circle .icon.arrow::before {
+  position: absolute;
+  content: '';
+  top: -0.25rem;
+  right: 0.0625rem;
+  width: 0.625rem;
+  height: 0.625rem;
+  border-top: 0.125rem solid #fff;
+  border-right: 0.125rem solid #fff;
+  transform: rotate(45deg);
+}
+
+button.learn-more .button-text {
+  transition: all 0.45s cubic-bezier(0.65, 0, .076, 1);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 0.75rem 0;
+  margin: 0 0 0 1.85rem;
+  color: #282936;
+  font-weight: 700;
+  line-height: 1.6;
+  text-align: center;
+  text-transform: uppercase;
+  margin-right: 25%;
+}
+
+button:hover .circle {
+  width: 70%;
+}
+
+button:hover .circle .icon.arrow {
+  background: #fff;
+  transform: translate(1rem, 0);
+}
+
+button:hover .button-text {
+  color: #fff;
+}
+
+
+#container {
+  justify-content: right;
+  align-items: right;
+  display: flex;
+}
+
+.nav-link2 {
+  width: 18%;
+  padding-left: 2%;
+}
+
+
+@import url(//fonts.googleapis.com/css?family=Lato:300:400);
+
+body {
+  margin: 0;
+}
+
+h1 {
+  font-family: 'Lato', sans-serif;
+  font-weight: 300;
+  letter-spacing: 2px;
+  font-size: 48px;
+}
+
+p {
+  font-family: 'Lato', sans-serif;
+  letter-spacing: 1px;
+  font-size: 14px;
+  color: #333333;
+}
+
+.header {
+  position: relative;
+  text-align: center;
+  background: linear-gradient(60deg, rgba(84, 58, 183, 1) 0%, rgba(0, 172, 193, 1) 100%);
+  color: white;
+}
+
+.logo {
+  width: 50px;
+  fill: white;
+  padding-right: 15px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.inner-header {
+  height: 50vh;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+
+}
+
+.flex {
+  /*Flexbox for containers*/
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.waves {
+  position: relative;
+  width: 100%;
+  height: 15vh;
+  margin-bottom: -7px;
+  /*Fix for safari gap*/
+  min-height: 100px;
+  max-height: 150px;
+}
+
+
+/* Animation */
+
+.parallax>use {
+  animation: move-forever 25s cubic-bezier(.55, .5, .45, .5) infinite;
+}
+
+.parallax>use:nth-child(1) {
+  animation-delay: -2s;
+  animation-duration: 7s;
+}
+
+.parallax>use:nth-child(2) {
+  animation-delay: -3s;
+  animation-duration: 10s;
+}
+
+.parallax>use:nth-child(3) {
+  animation-delay: -4s;
+  animation-duration: 13s;
+}
+
+.parallax>use:nth-child(4) {
+  animation-delay: -5s;
+  animation-duration: 20s;
+}
+
+@keyframes move-forever {
+  0% {
+    transform: translate3d(-90px, 0, 0);
+  }
+
+  100% {
+    transform: translate3d(85px, 0, 0);
+  }
+}
+
+/*Shrinking for mobile*/
+@media (max-width: 768px) {
+  .waves {
+    height: 40px;
+    min-height: 40px;
+  }
+
+  .content {
+    height: 30vh;
+  }
+
+  h1 {
+    font-size: 24px;
+  }
+}
+
+
+
+
+.container2 {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  margin-bottom: 4%;
+}
+
+.chevron {
+  position: absolute;
+
+  width: 28px;
+  height: 10px;
+  opacity: 0;
+  transform: scale3d(0.5, 0.5, 0.5);
+  animation: move 3s ease-out infinite;
+}
+
+.chevron:first-child {
+  animation: move 3s ease-out 1s infinite;
+}
+
+.chevron:nth-child(2) {
+  animation: move 3s ease-out 2s infinite;
+}
+
+.chevron:before,
+.chevron:after {
+  content: ' ';
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 51%;
+  background: #44A5FF;
+}
+
+.chevron:before {
+  left: 0;
+  transform: skew(0deg, 30deg);
+}
+
+.chevron:after {
+  right: 0;
+  width: 50%;
+  transform: skew(0deg, -30deg);
+}
+
+@keyframes move {
+  25% {
+    opacity: 1;
+
+  }
+
+  33% {
+    opacity: 1;
+    transform: translateY(30px);
+  }
+
+  67% {
+    opacity: 1;
+    transform: translateY(40px);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(55px) scale3d(0.5, 0.5, 0.5);
+  }
+}
+
+.text2 {
+  display: block;
+  margin-top: 75px;
+  margin-left: -30px;
+  font-family: "Helvetica Neue", "Helvetica", Arial, sans-serif;
+  font-size: 12px;
+  color: #000000;
+  text-transform: uppercase;
+  white-space: nowrap;
+  opacity: .25;
+  animation: pulse 2s linear alternate infinite;
+}
+
+/* 모달 부분 */
+.BNmodal {
+  position: fixed; /* Modal을 화면 가운데에 고정 */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%; /* Modal의 너비 */
+ /* 최대 너비 */
+  background: #fff;
+  padding: 30px;
+  border-radius: 4px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15); /* 그림자 효과 */
+  z-index: 1000; /* 다른 요소 위에 표시 */
+
+}
+
+.BNmodal-content {
+  overflow: auto; /* 내용이 많을 경우 스크롤 생성 */
+}
+
+.BNclosediv {
+  text-align: right;
+  margin-bottom: 2%;
+}
+
+.BNclose {
+  cursor: pointer;
+  font-size: 1.5em;
+}
+
+.BNclose:hover,
+  .BNclose:focus {
+	color: #bbb;
+	text-decoration: none;
+	cursor: pointer;
+  }
+
+.BNnotice-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.BNnotice-table thead {
+  background-color: #44A5FF;
+  color: #fff;
+}
+
+.BNnotice-table th {
+  font-family: 'SKYBORI';
+  font-weight: bold;
+  font-size: 1.1em;
+  padding: 10px;
+  text-align: left;
+}
+
+.BNnotice-table td {
+  font-size: 1.2em;
+  padding: 15px;
+  text-align: left;
+}
+
+.BNnotice-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.BNcontent {
+  word-wrap: break-word; /* 긴 단어가 요소의 너비를 넘어갈 경우 단어를 줄바꿈 */
+  overflow-y: auto; /* 요소의 높이를 넘어가는 내용이 있을 경우 세로 스크롤 생성 */
+  overflow-x: hidden; /* 가로 스크롤바 생성 방지 */
+  overflow-wrap: break-word;
+  word-break: break-all;
+  max-height: 200px; /* 최대 높이 설정 */
+  height: 10%;
+  width: 50%;
+}
+.BNtitle {
+  word-wrap: break-word; /* 긴 단어가 요소의 너비를 넘어갈 경우 단어를 줄바꿈 */
+  overflow-y: auto; /* 요소의 높이를 넘어가는 내용이 있을 경우 세로 스크롤 생성 */
+  overflow-x: hidden; /* 가로 스크롤바 생성 방지 */
+  overflow-wrap: break-word;
+  word-break: break-all;
+  width: 20.5%;
+
+}
+
+.BNmonth{
+  word-wrap: break-word; /* 긴 단어가 요소의 너비를 넘어갈 경우 단어를 줄바꿈 */
+  overflow-y: auto; /* 요소의 높이를 넘어가는 내용이 있을 경우 세로 스크롤 생성 */
+  overflow-x: hidden; /* 가로 스크롤바 생성 방지 */
+  overflow-wrap: break-word;
+  word-break: break-all;
+  width: 20.5%;
+}
